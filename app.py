@@ -10,8 +10,10 @@ def connect_db():
         passwd='',
         db='my_python',
     )
+    
     if not conection:
         print("can not connect to database ")
+
     print("connect to database success !")    
     return conection
 connect_db()
@@ -23,7 +25,7 @@ def home():
     cursor.execute("SELECT * FROM user")
     user = cursor.fetchall()
 
-    return render_template('index.html',myuser =user,edit_data=None)
+    return render_template('index.html',myuser =user)
 
 @app.route('/insert',methods=["POST"])
 def insert ():
@@ -60,6 +62,15 @@ def update():
     conetion.commit()
     return redirect(url_for('home'))
 
+
+@app.route('/login')
+def login():
+    return render_template('Login.html')
+
+
+@app.route('/register')
+def register():
+    return render_template("Register.html")
 
 
 
