@@ -15,8 +15,16 @@
 <body>
     
     <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+
         <form method="post" action="/register" class="w-50 shadow p-5">
             <p class="text-center fw-bold">Register</p>
+            {% if error %}
+
+            <div class="text-center text-danger">
+                {{error}}
+            </div>
+
+            {%endif%}
              <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">UserName</label>
                 <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -35,7 +43,7 @@
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
-            <p> have account  ? <a href="{{url_for('login')}}">Login</a> now</p>
+            <p> have account  ? <a href="{{url_for('insert')}}">Login</a> now</p>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

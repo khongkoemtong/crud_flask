@@ -19,6 +19,11 @@
 
         <form class="w-50 shadow p-5" method="post" action="/login">
             <p class="text-center fw-bold">Login</p>
+            {% if error%}
+            <div class="text-center text-danger">
+                {{error}}
+            </div>
+            {%endif%}
             <div>
              
             </div>
