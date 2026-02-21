@@ -24,14 +24,11 @@ def connect_db():
     print("connect to database success !")    
     return conection
 connect_db()
-
-
 def login_require(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         
         if 'user_id' not in session:
-            
             return redirect(url_for('login'))
         return f(*args, **kwargs)
         
@@ -137,8 +134,6 @@ def register():
         except Exception as e :
             error = ("can not insert data",e)
             
- 
-
 
     return render_template("register.html",error =error)
 
@@ -160,8 +155,8 @@ def login():
             error="Login success"
 
             if acount:
-                acount['user_id']=acount[0]
-                acount['user_name']=acount[1]
+                session['user_id']=acount[0]
+                session['user_name']=acount[1]
                 return redirect(url_for('home'))
             
         except Exception as e :
@@ -170,7 +165,11 @@ def login():
     return render_template('login.html',error=error)
 
 
-        
+@app.route('/logout',methods=["POST"])
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 
 
 
